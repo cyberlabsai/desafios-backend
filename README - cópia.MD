@@ -35,5 +35,6 @@ O test será o nome do banco de dados criado automaticamente.
 e depois clicar em SEND para assim ser criado o usuário dev dentro do banco de dados
 **
 
+- Uma tela apenas no front end onde se vê as informações e avatar dos Devs e onde você clicar em curtir ou não.
 
 
