@@ -1,9 +1,8 @@
 const express = require('express')
+const RecipeController = require('./controllers/RecipeController')
 const router = express.Router()
 
 
-router.get('/', (req, res) => {
-    return res.json({test: 'project'})
-})
+router.post('/recipes', RecipeController.store)
 
 module.exports = router
