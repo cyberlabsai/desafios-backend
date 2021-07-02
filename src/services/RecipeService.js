@@ -27,5 +27,11 @@ module.exports = {
         const updatedRecipe = await Recipe.update({name, description, cost}, { where: {id}})
 
         return updatedRecipe
+    },
+
+    async delete(id) {
+        const deletedRecipe = await Recipe.destroy({ where: { id }})
+
+        return deletedRecipe
     }
 };

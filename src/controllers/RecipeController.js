@@ -18,11 +18,20 @@ module.exports = {
             const { id } = req.params
             const { name, description, cost} = req.body
 
+            if(!id)
+                return res.status(400).json('Bad Request: id is required.')
+            if(!name)
+                return res.status(400).json('Bad Request: name is required.')
+            if(!description)
+                return res.status(400).json('Bad Request: description is required.')
+            if(!cost)
+                return res.status(400).json('Bad Request: cost is required.')
+
             const updatedRecipe = await RecipeService.update(id, name, description, cost)
-            
+
             if(!updatedRecipe) return res.status(500).json(`Internal Server Error`)
 
-            return res.status(201).json("updated recipe successfully!")
+            return res.status(200).json("updated recipe successfully!")
         } catch (error) {
             return res.status(500).json(`Internal Server Error ${error}`)
             
@@ -54,6 +63,23 @@ module.exports = {
         } catch (error) {
             return res.status(500).json(`Internal Server Error ${error}`)
         }
+    },
+
+    async delete(req, res) {
+        try {
+            const { id } = req.params
+
+            if(!id)
+                return res.status(400).json('Bad Request: id is required.')
+
+            await RecipeService.delete(id)
+
+            return res.status(200).json('Recipe is deleted.')
+            
+        } catch (error) {
+            return res.status(500).json(`Internal Server Error ${error}`)
+        }
+
     }
 
 
