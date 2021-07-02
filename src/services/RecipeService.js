@@ -17,8 +17,15 @@ module.exports = {
         minutes,
         ingredients,
         image,
-        });
+        })
 
-        return recipe;
+        return recipe
     },
+
+    async update(id, name, description, cost){
+
+        const updatedRecipe = await Recipe.update({name, description, cost}, { where: {id}})
+
+        return updatedRecipe
+    }
 };

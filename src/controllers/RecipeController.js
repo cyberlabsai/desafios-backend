@@ -13,6 +13,23 @@ module.exports = {
         }
     },
 
+    async update(req, res) {
+        try {
+            const { id } = req.params
+            const { name, description, cost} = req.body
+
+            const updatedRecipe = await RecipeService.update(id, name, description, cost)
+            
+            if(!updatedRecipe) return res.status(500).json(`Internal Server Error`)
+
+            return res.status(201).json("updated recipe successfully!")
+        } catch (error) {
+            return res.status(500).json(`Internal Server Error ${error}`)
+            
+        }
+
+    },
+
     async store(req, res) {
         try {
             const { name, description, cost, minutes, ingredients, image } = req.body;
@@ -38,4 +55,6 @@ module.exports = {
             return res.status(500).json(`Internal Server Error ${error}`)
         }
     }
+
+
 };
