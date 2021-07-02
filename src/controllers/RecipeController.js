@@ -13,6 +13,23 @@ module.exports = {
         }
     },
 
+    async getById (req, res) {
+        try {
+            const { id } = req.params
+
+            if(!id)
+                return res.status(400).json('Bad Request: id is required.')
+
+            const recipe  = await RecipeService.getById(id)
+
+            return res.status(200).json(recipe)
+
+        } catch (error) {
+            return res.status(500).json(`Internal Server Error ${error}`)
+            
+        }
+    },
+
     async update(req, res) {
         try {
             const { id } = req.params

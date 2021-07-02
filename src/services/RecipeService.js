@@ -1,4 +1,4 @@
-const { index } = require("../controllers/RecipeController");
+const { index, getById } = require("../controllers/RecipeController");
 const Recipe = require("../models/Recipe");
 
 module.exports = {
@@ -7,6 +7,12 @@ module.exports = {
         const recipes = await Recipe.findAll()
 
         return recipes
+    },
+
+    async getById(id) {
+        const recipe = await Recipe.findByPk(id)
+        
+        return recipe
     },
 
     async store(name, description, cost, minutes, ingredients, image) {
